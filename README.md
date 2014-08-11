@@ -26,22 +26,23 @@ to a small MongoDB database or get the instruction to pull jobs from it.
 ```
 ### 6. Require the api from whenever you want to use it.
 ```
-  var keppler = require(`path/to/keppler_api.js`);
+  var kp = require(`path/to/keppler_api.js`);
   
   /*
     put method:
-    Sends a job with a namespace 'query' and a specific configuration for this fake app, the object is completely
-    free for you to define and use within your workers and requesters. The object sent as a second parameter will be
-    serialized and stored as string, you will recover it later.
+    Sends a job with a namespace 'query' and a specific configuration for this fake app, 
+    the object is completely free for you to define and use within your workers and 
+    requesters. The object sent as a second parameter will be serialized and stored as 
+    string, you will recover it later.
   */
-    keppler.put("query", {cmd: "request", source: "twitter", ids: [1,2,3,4,5]}, function putCallback(data){
+    kp.put("query", {cmd: "req", source: "twitter", ids: [1,2,3]}, function(data){
       console.log("Data after put ", data);
     });
   
   /*
     pet method:
-    Finds a job with the namespace 'query' and returns a json string in the following format:
-    {status: "success", jobId: "someid", data: {cmd: "request", source: "twitter", ids: [1,2,3,4,5]}};
+    Finds a job with namespace 'query' and returns a json string in the following format:
+    {status: "success", jobId: "someid", data: {cmd: "req", src: "twitter", ids: [1,2,3]}};
     
     Once a job is found and returned through this method it gets deleted from the database.
   */
@@ -54,12 +55,12 @@ to a small MongoDB database or get the instruction to pull jobs from it.
   
   /*
     removeOne method:
-    Finds a job with a given jobId and removes it from a database. If found and removed it will respond with a 
-    json string in the following format:
+    Finds a job with a given jobId and removes it from a database. If found and removed it 
+    will respond with a  json string in the following format:
     {status : "success", jobId : "someid"}
     
-    The jobId returned should match with the one you sent to the method, it is returned so you can be sure the
-    right job got deleted.
+    The jobId returned should match with the one you sent to the method, it is returned so 
+    you can be sure the right job got deleted.
     
     If the job was not found it will return a json string in the following format:
     {status : "fail", message : "not found"};
