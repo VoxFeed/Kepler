@@ -77,8 +77,8 @@ to a small MongoDB database or get the instruction to pull jobs from it.
   
   /*
     removeAll method:
-    Finds all jobs within a given namespace and removes them from the queue. If found and removed,
-    it will respond with a  json string in the following format:
+    Finds all jobs within a given namespace and removes them from the queue. 
+    If found and removed it will return a json string in the following format:
     {status : "success", count : Number}
     
     The count returned represents the amount of jobs removed.
