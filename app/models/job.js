@@ -2,7 +2,7 @@ var Mongoose = require('mongoose'),
   MD5        = require('MD5'),
   Job;
 
-Mongoose.connect('mongodb://localhost/keppler-jq');
+Mongoose.connect('mongodb://localhost/kepler-jq');
 
 JobSchema = new Mongoose.Schema({
   namespace : String,

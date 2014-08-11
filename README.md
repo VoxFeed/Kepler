@@ -22,11 +22,11 @@ to a small MongoDB database or get the instruction to pull jobs from it.
 ```
 ### 5. Copy the api file into your app.
 ```
-  cp lib/keppler_api.js /path/to/yourapp/lib
+  cp lib/kepler_api.js /path/to/yourapp/lib
 ```
 ### 6. Require the api from whenever you want and use it.
 ```
-  var kp = require(`path/to/keppler_api.js`);
+  var kp = require(`path/to/kepler_api.js`);
   
   /*
     put method:
