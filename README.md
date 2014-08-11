@@ -42,9 +42,10 @@ to a small MongoDB database or get the instruction to pull jobs from it.
   /*
     pet method:
     Finds a job with namespace 'query' and returns a json string in the following format:
-    {status: "success", jobId: "someid", data: {cmd: "req", src: "twitter", ids: [1,2,3]}};
+    {status:"success", jobId:"someid", data:{cmd:"req", src:"twitter", ids:[1,2,3]}};
     
-    Once a job is found and returned through this method it gets deleted from the database.
+    Once a job is found and returned through this method it gets deleted from the 
+    database.
   */
     keppler.get("query", function getCallback(data) {
       var jsonData = JSON.parse(data);
@@ -55,12 +56,12 @@ to a small MongoDB database or get the instruction to pull jobs from it.
   
   /*
     removeOne method:
-    Finds a job with a given jobId and removes it from a database. If found and removed it 
-    will respond with a  json string in the following format:
+    Finds a job with a given jobId and removes it from a database. If found and removed,
+    it will respond with a  json string in the following format:
     {status : "success", jobId : "someid"}
     
-    The jobId returned should match with the one you sent to the method, it is returned so 
-    you can be sure the right job got deleted.
+    The jobId returned should match with the one you sent to the method, it is returned 
+    soyou can be sure the right job got deleted.
     
     If the job was not found it will return a json string in the following format:
     {status : "fail", message : "not found"};
