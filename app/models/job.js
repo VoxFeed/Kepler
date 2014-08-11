@@ -11,14 +11,14 @@ JobSchema = new Mongoose.Schema({
 });
 
 JobSchema.statics.get = function get(namespace, callback) {
-  this.findOneAndRemove({namespace: namespace}, function findOneAndRemoveHandler(error, job) {
+  this.findOneAndRemove({namespace : namespace}, function findOneAndRemoveHandler(error, job) {
     var response = {};
 
     if (error || job === null) {
-      response = {status: 'fail', message: 'not found'};
+      response = {status : 'fail', message : 'not found'};
     }
     else if (job) {
-      response = {status: 'success', jobId: job.jobId, data: job.data};
+      response = {status : 'success', jobId : job.jobId, data : job.data};
     }
 
     callback(response);
@@ -38,18 +38,18 @@ JobSchema.statics.put = function put(namespace, data, callback) {
 
   job = new Job({
     namespace : namespace,
-    jobId : jobId,
-    data  : data
+    jobId     : jobId,
+    data      : data
   });
 
   job.save(function jobSaveHandler(error, job) {
     var response = {};
 
     if (error) {
-      response = {status: "error"}
+      response = {status : "fail"}
     }
     else if (job && job.jobId === jobId) {
-      response = {status : "success", jobId: jobId};  
+      response = {status : "success", jobId : jobId};  
     }
 
     callback(response);
@@ -71,11 +71,11 @@ JobSchema.statics.removeOne = function removeOne(jobId, callback) {
 };
 
 JobSchema.statics.removeAll = function removeAll(namespace, callback) {
-  var query = this.remove({namespace: 'query'}, function removeHandler(error, removedCount) {
+  var query = this.remove({namespace : 'query'}, function removeHandler(error, removedCount) {
     var response = {};
 
     if (error || removedCount === 0) {
-      response = {status : 'fail', message:  'not found'};
+      response = {status : 'fail', message : 'not found'};
     }
     else if (removedCount && removedCount > 0) {
       response = {status : 'success', count : removedCount};
