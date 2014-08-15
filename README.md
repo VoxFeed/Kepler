@@ -1,7 +1,6 @@
 # Kepler-JQ
 
-Kepler-JQ is a light weight Job Queue for Node.js. It runs a Node.js server that is ready to get jobs and store them
-to a small MongoDB database or get the instruction to pull jobs from it.
+Kepler-JQ is a light weight Job Queue for Node.js. It's a package that connects to a mongoDB database and it's ready to get and store jobs with customized data.
 
 ## How to use.
 
@@ -22,11 +21,11 @@ to a small MongoDB database or get the instruction to pull jobs from it.
 ```
 ### 5. Copy the api file into your app.
 ```
-  cp lib/kepler_api.js /path/to/yourapp/lib
+  cp lib/kepler.js /path/to/yourapp/lib
 ```
 ### 6. Require the api from whenever you want and use it.
 ```
-  var kp = require(`path/to/kepler_api.js`);
+  var kp = require(`path/to/kepler.js`);
   
   /*
     put method:
@@ -95,3 +94,45 @@ to a small MongoDB database or get the instruction to pull jobs from it.
   });
   
 ```
+// Testing UPDATE
+kp.put('NAMESPACE_1', {id : 1234567, user : 'user', foo : 'bar'}, function(error, data){
+    console.log('Testing UPDATE (N1)', error, data);
+
+    kp.put('NAMESPACE_1', {id : 7654321, user : 'user', foo : 'bar'}, function(error, data){
+        console.log('Testing UPDATE (N1)', error, data);
+
+        // Testing REMOVE_ALL
+        kp.removeAll('NAMESPACE_1', function(error, data){
+            console.log('Testing REMOVE_ALL', error, data);
+        });
+
+    });
+
+});
+
+kp.put('NAMESPACE_2', {id : 1234567, user : 'user', foo : 'bar'}, function(error, data){
+    console.log('Testing UPDATE (N2)', error, data);
+
+    // Testing FETCH and REMOVE
+    kp.fetch('NAMESPACE_2', function(error, data){
+        console.log('Testing FETCH', error, data);
+        if(!error){
+
+            kp.remove(data.jobId, function(error, data){
+                console.log('Testing REMOVE', error, data);
+            });
+
+        }
+    });
+
+});
+
+kp.put('NAMESPACE_3', {id : 1234567, user : 'user', foo : 'bar'}, function(error, data){
+    console.log('Testing UPDATE (N3)', error, data);
+
+    // Testing GET
+    kp.get('NAMESPACE_3', function(error, data){
+        console.log('Testing GET', error, data);
+    });
+
+});

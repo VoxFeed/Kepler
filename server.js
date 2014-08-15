@@ -6,7 +6,7 @@ var express      = require('express'),
     net          = require('net'),
     bodyParser   = require('body-parser'),
     routes       = require('./routes/index'),
-    Job          = require('./app/models/job'),
+    Job          = require('./lib/models/job'),
     app          = express(),
     server;
 
