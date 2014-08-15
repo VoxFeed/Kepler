@@ -4,29 +4,28 @@ Kepler-JQ is a light weight Job Queue for Node.js. It's a package that connects 
 
 ## How to use.
 
-### 1. Download the code.
+### 1. Install kepler
+```
+  npm install kepler-jq
+```
 
 ### 2. Run mongodb. 
 ```
   $ mongod
 ```
 
-### 3. Install dependencies.
+### 3. Require kepler where you need it.
 ````
-  npm install
+  var Kepler = require('kepler-jq');
 ```
-### 4. Run the server.
+
+### 4. Instanciate the class and pass the db config.
 ```
-  node server.js
+  var kp = new Kepler({host: 'localhost', port: 8200, user: 'myUsr', password: 'somePassword'});
+````
+
+### 5. Usage samples
 ```
-### 5. Copy the api file into your app.
-```
-  cp lib/kepler.js /path/to/yourapp/lib
-```
-### 6. Require the api from whenever you want and use it.
-```
-  var kp = require(`path/to/kepler.js`);
-  
   /*
     put method:
     Sends a job with a namespace 'query' and a specific configuration for this fake app, 
@@ -39,7 +38,7 @@ Kepler-JQ is a light weight Job Queue for Node.js. It's a package that connects 
     });
   
   /*
-    pet method:
+    get method:
     Finds a job with namespace 'query' and returns a json string in the following format:
     {status:"success", jobId:"someid", data:{cmd:"req", src:"twitter", ids:[1,2,3]}};
     
@@ -94,45 +93,3 @@ Kepler-JQ is a light weight Job Queue for Node.js. It's a package that connects 
   });
   
 ```
-// Testing UPDATE
-kp.put('NAMESPACE_1', {id : 1234567, user : 'user', foo : 'bar'}, function(error, data){
-    console.log('Testing UPDATE (N1)', error, data);
-
-    kp.put('NAMESPACE_1', {id : 7654321, user : 'user', foo : 'bar'}, function(error, data){
-        console.log('Testing UPDATE (N1)', error, data);
-
-        // Testing REMOVE_ALL
-        kp.removeAll('NAMESPACE_1', function(error, data){
-            console.log('Testing REMOVE_ALL', error, data);
-        });
-
-    });
-
-});
-
-kp.put('NAMESPACE_2', {id : 1234567, user : 'user', foo : 'bar'}, function(error, data){
-    console.log('Testing UPDATE (N2)', error, data);
-
-    // Testing FETCH and REMOVE
-    kp.fetch('NAMESPACE_2', function(error, data){
-        console.log('Testing FETCH', error, data);
-        if(!error){
-
-            kp.remove(data.jobId, function(error, data){
-                console.log('Testing REMOVE', error, data);
-            });
-
-        }
-    });
-
-});
-
-kp.put('NAMESPACE_3', {id : 1234567, user : 'user', foo : 'bar'}, function(error, data){
-    console.log('Testing UPDATE (N3)', error, data);
-
-    // Testing GET
-    kp.get('NAMESPACE_3', function(error, data){
-        console.log('Testing GET', error, data);
-    });
-
-});
