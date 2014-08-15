@@ -1,0 +1,35 @@
+{
+  "name": "kepler-jq",
+  "description": "A simple job queue manager.",
+  "version": "0.0.1",
+  "repository": {
+    "type" : "git",
+    "url": "https://github.com/VoxFeed/Kepler-JQ.git"
+  },
+  "main": "./lib/kepler",
+  "keywords": [
+    "Queue",
+    "Job"
+  ],
+  "bugs": {
+    "url": "https://github.com/VoxFeed/Kepler-JQ/issues"
+  },
+  "maintainers": [
+    {
+      "name": "manuelmhtr",
+      "email": "m@voxfeed.com"
+    },
+    {
+      "name": "gusortiz",
+      "email": "gustavo.ortiz@voxfeed.com"
+    }
+  ],
+  "dependencies": {
+    "mongoose": "^3.8.14",
+    "neon": "^2.0.0",
+    "MD5": "1.2.1"
+  },
+  "engines": {
+    "node": "*"
+  }
+}
