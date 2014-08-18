@@ -53,6 +53,20 @@ Kepler-JQ is a light weight Job Queue for Node.js. It's a package that connects 
     });
   
   /*
+    fetch method:
+    Finds a job with namespace 'query' and returns a json string in the following format:
+    {status:"success", jobId:"someid", data:{cmd:"req", src:"twitter", ids:[1,2,3]}};
+      
+    Job is NOT deleted after is returned. You need to call remove method after job is complete.
+  */
+    kp.fetch("query", function getCallback(data) {
+      var jsonData = JSON.parse(data);
+      if (jsonData.status === "success") {
+        TwitterRequester.request(jsonData.ids, someCallback);
+      }
+    });
+      
+  /*
     remove method:
     Finds a job with a given jobId and removes it from the queue. If found and removed,
     it will respond with a  json string in the following format:
