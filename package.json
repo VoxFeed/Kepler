@@ -1,10 +1,10 @@
 {
-  "name": "kepler-jq",
+  "name": "kepler",
   "description": "A simple job queue manager.",
   "version": "0.0.3",
   "repository": {
     "type" : "git",
-    "url": "https://github.com/VoxFeed/Kepler-JQ.git"
+    "url": "https://github.com/VoxFeed/Kepler.git"
   },
   "main": "./lib/kepler",
   "directories": {
@@ -15,7 +15,7 @@
     "Job"
   ],
   "bugs": {
-    "url": "https://github.com/VoxFeed/Kepler-JQ/issues"
+    "url": "https://github.com/VoxFeed/Kepler/issues"
   },
   "maintainers": [
     {

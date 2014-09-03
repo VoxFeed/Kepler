@@ -1,12 +1,12 @@
-# Kepler-JQ
+# Kepler (job queue)
 
-Kepler-JQ is a light weight Job Queue for Node.js. It's a package that connects to a mongoDB database and it's ready to get and store jobs with customized data.
+Kepler is a light weight Job Queue for Node.js. It's a package that connects to a mongoDB database and it's ready to get and store jobs with customized data.
 
 ## How to use.
 
 ### 1. Install kepler
 ```
-  npm install kepler-jq
+  npm install kepler
 ```
 
 ### 2. Run mongodb. 
@@ -16,7 +16,7 @@ Kepler-JQ is a light weight Job Queue for Node.js. It's a package that connects 
 
 ### 3. Require kepler where you need it.
 ````
-  var Kepler = require('kepler-jq');
+  var Kepler = require('kepler');
 ```
 
 ### 4. Instanciate the class and pass the db config.
